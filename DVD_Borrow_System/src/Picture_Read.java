@@ -21,12 +21,12 @@ class Pic extends JFrame{
 	public void addPic(){
 		//super("DVD");
 
-		this.setTitle("DVD");	//设置窗体大小和标题
+		this.setTitle("DVD");	
 		this.setSize(480,720);
 	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		//建立面板
+		
 		JPanel panel = new JPanel();
 		JLabel label = new JLabel();
 		
