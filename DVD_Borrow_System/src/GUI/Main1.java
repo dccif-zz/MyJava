@@ -12,12 +12,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.Action;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+
 
 public class Main1 extends Select{
-
 	public static JFrame frmDvd;
-	private final Action action = new SwingAction();
-
+	Select Select2 = new Select(); //实例化界面
+	public final Action action = new SwingAction();
+		
 	/**
 	 * Launch the application.
 	 */
@@ -32,6 +34,9 @@ public class Main1 extends Select{
 				}
 			}
 		});
+		
+		
+		
 	}
 
 	/**
@@ -40,11 +45,11 @@ public class Main1 extends Select{
 	public Main1() {
 		initialize();
 	}
-
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	public void initialize() {
 		frmDvd = new JFrame();
 		frmDvd.setTitle("DVD租赁系统");
 		frmDvd.setBounds(100, 100, 707, 479);
@@ -59,11 +64,65 @@ public class Main1 extends Select{
 		tabbedPane.addTab("动作", null, panel, null);
 		panel.setLayout(null);
 		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Select.change(1);
+				//System.out.println(SelcPic);
+				frmDvd.setVisible(false);
+				Select2.SelectUI.setVisible(true);
+			}
+		});
+		btnNewButton.setIcon(new ImageIcon("E:\\Source\\Pic\\1.jpg"));
+		btnNewButton.setBounds(27, 33, 162, 231);
+		panel.add(btnNewButton);
+		
+		JButton btnNewButton_4 = new JButton("New button");
+		btnNewButton_4.setBounds(223, 25, 113, 138);
+		panel.add(btnNewButton_4);
+		
+		JButton btnNewButton_5 = new JButton("New button");
+		btnNewButton_5.setBounds(403, 25, 113, 138);
+		panel.add(btnNewButton_5);
+		
+		JButton btnNewButton_6 = new JButton("New button");
+		btnNewButton_6.setBounds(223, 176, 113, 133);
+		panel.add(btnNewButton_6);
+		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("娱乐", null, panel_1, null);
+		panel_1.setLayout(null);
+		
+		JButton btnNewButton_2 = new JButton("New button");
+		btnNewButton_2.setBounds(35, 48, 155, 206);
+		panel_1.add(btnNewButton_2);
+		
+		JButton btnNewButton_7 = new JButton("New button");
+		btnNewButton_7.setBounds(218, 48, 129, 133);
+		panel_1.add(btnNewButton_7);
+		
+		JButton btnNewButton_8 = new JButton("New button");
+		btnNewButton_8.setBounds(378, 48, 129, 145);
+		panel_1.add(btnNewButton_8);
+		
+		
 		
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("喜剧", null, panel_2, null);
+		panel_2.setLayout(null);
+		
+		JButton btnNewButton_3 = new JButton("New button");
+		btnNewButton_3.setBounds(42, 52, 159, 210);
+		panel_2.add(btnNewButton_3);
+		
+		JButton btnNewButton_9 = new JButton("New button");
+		btnNewButton_9.setBounds(243, 65, 138, 147);
+		panel_2.add(btnNewButton_9);
+		
+		JButton btnNewButton_10 = new JButton("New button");
+		btnNewButton_10.setBounds(411, 52, 113, 141);
+		panel_2.add(btnNewButton_10);
 		
 		JPanel panel_3 = new JPanel();
 		tabbedPane.addTab("爱情", null, panel_3, null);
@@ -74,13 +133,24 @@ public class Main1 extends Select{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				frmDvd.setVisible(false);
-				Select.SelectUI.setVisible(true);
-				
+				Select2.SelectUI.setVisible(true);
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon("E:\\Source\\your-name.jpg"));
 		btnNewButton_1.setBounds(26, 29, 194, 251);
 		panel_3.add(btnNewButton_1);
+		
+		JButton btnNewButton_11 = new JButton("New button");
+		btnNewButton_11.setBounds(234, 13, 119, 152);
+		panel_3.add(btnNewButton_11);
+		
+		JButton btnNewButton_12 = new JButton("New button");
+		btnNewButton_12.setBounds(408, 17, 119, 152);
+		panel_3.add(btnNewButton_12);
+		
+		JButton btnNewButton_13 = new JButton("New button");
+		btnNewButton_13.setBounds(234, 180, 117, 142);
+		panel_3.add(btnNewButton_13);
 	}
 	private class SwingAction extends AbstractAction {
 		/**
