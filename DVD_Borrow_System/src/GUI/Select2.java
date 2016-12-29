@@ -7,30 +7,35 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.Spring;
 import javax.swing.JTextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Select extends Pay {
+public class Select2 {
 
 	public static JFrame SelectUI;
 	Pay Pay3 = new Pay();        //实例化界面
 	
+	public String i = "0";
 	public static String SelcPic = "E:\\Source\\Pic\\";   //图片原始读取
 	
-	String Brief = "zhelishijianjie";
+	public static String TrueAddress;
+	
+	String Brief = "TrueAddress";
 	
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+		EventQueue.invokeLater(new Runnable() {	
+
 			public void run() {
 				try {
-					Select window = new Select();
-					window.SelectUI.setVisible(true);
+					Select1 window = new Select1();
+					Select1.SelectUI.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -41,16 +46,16 @@ public class Select extends Pay {
 	/**
 	 * Create the application.
 	 */
-	public Select() {
+	public Select2() {
 		initialize();
 	}
 	
-	public static void change(int i) {
-		String SelcPic = SelcPic + i +".jpg";
-	}
-		
 
-	
+	public String set(String i){
+		this.i=i;
+		TrueAddress = SelcPic + i +".jpg";
+		return TrueAddress;
+	}
 	
 	/**
 	 * Initialize the contents of the frame.
@@ -61,9 +66,8 @@ public class Select extends Pay {
 		SelectUI.setBounds(100, 100, 707, 479);
 		SelectUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		SelectUI.getContentPane().setLayout(null);
-
-		JButton btnNewButton = new JButton("pic");
-		btnNewButton.setIcon(new ImageIcon(SelcPic));
+		JButton btnNewButton = new JButton("new");
+		btnNewButton.setIcon(new ImageIcon("E:\\Source\\Pic\\1.jpg"));
 		btnNewButton.setBounds(25, 47, 194, 251);
 		SelectUI.getContentPane().add(btnNewButton);
 		

@@ -52,7 +52,7 @@ public class Pay {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Select.SelectUI.setVisible(true);
+				Select1.SelectUI.setVisible(true);
 				PayUI.setVisible(false);
 			}
 		});

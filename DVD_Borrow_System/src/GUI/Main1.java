@@ -15,9 +15,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 
 
-public class Main1 extends Select{
+public class Main1{
 	public static JFrame frmDvd;
-	Select Select2 = new Select(); //实例化界面
+	Select1 Select2 = new Select1(); //实例化界面
 	public final Action action = new SwingAction();
 		
 	/**
@@ -46,6 +46,15 @@ public class Main1 extends Select{
 		initialize();
 	}
 	
+	
+	/*public String get(String i){
+		this.i=i;
+		TrueAddress = SelcPic + i +".jpg";
+		return TrueAddress;
+	}*/
+	
+	
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -68,10 +77,10 @@ public class Main1 extends Select{
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Select.change(1);
-				//System.out.println(SelcPic);
+		
+				System.out.println(Select1.TrueAddress);
 				frmDvd.setVisible(false);
-				Select2.SelectUI.setVisible(true);
+				Select1.SelectUI.setVisible(true);
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon("E:\\Source\\Pic\\1.jpg"));
@@ -79,6 +88,16 @@ public class Main1 extends Select{
 		panel.add(btnNewButton);
 		
 		JButton btnNewButton_4 = new JButton("New button");
+		btnNewButton_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//Select2.set("3");
+				//System.out.println(Select2.TrueAddress);
+				frmDvd.setVisible(false);
+				Select1.SelectUI.setVisible(true);
+			}
+		});
+		
 		btnNewButton_4.setBounds(223, 25, 113, 138);
 		panel.add(btnNewButton_4);
 		
@@ -133,7 +152,7 @@ public class Main1 extends Select{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				frmDvd.setVisible(false);
-				Select2.SelectUI.setVisible(true);
+				Select1.SelectUI.setVisible(true);
 			}
 		});
 		btnNewButton_1.setIcon(new ImageIcon("E:\\Source\\your-name.jpg"));
@@ -165,3 +184,5 @@ public class Main1 extends Select{
 		}
 	}
 }
+
+
