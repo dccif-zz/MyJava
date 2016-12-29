@@ -14,10 +14,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
 import java.awt.Font;
 import javax.swing.JComboBox;
 
-public class Select2 {
+public class Select4 {
 
 	public static JFrame SelectUI;
 	Pay Pay3 = new Pay();        //实例化界面
@@ -53,7 +54,7 @@ public class Select2 {
 	 * Create the application.
 	 * @wbp.parser.entryPoint
 	 */
-	public Select2() {
+	public Select4() {
 		initialize();
 	}
 	
@@ -73,16 +74,17 @@ public class Select2 {
 		SelectUI.setBounds(100, 100, 707, 479);
 		SelectUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		SelectUI.getContentPane().setLayout(null);
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\dccif\\Documents\\Work\\Source\\Pic\\2.jpg"));
+		JButton btnNewButton = new JButton("未来的英国社会处于极权统治的高压下，不能容许同性恋者、异教徒等社会角色的存在，人民在黑暗政权下苟延残喘。 ");
+		btnNewButton.setBackground(UIManager.getColor("Button.background"));
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\dccif\\Documents\\Work\\Source\\Pic\\4.jpg"));
 		btnNewButton.setBounds(25, 50, 121, 170);
 		SelectUI.getContentPane().add(btnNewButton);
 		
-		JTextPane txtpnasset = new JTextPane();
-		txtpnasset.setFont(new Font("宋体", Font.PLAIN, 15));
-		txtpnasset.setText("在“后斯诺登时代”，伯恩重出江湖，对抗大反派Asset。故事最开始将在希腊展开，这里是民主政治的诞生地，同时这个国家现在面临严重的经济危机，足以对欧洲经济圈造成巨大威胁，最后故事将在拉斯维加斯结束。");
-		txtpnasset.setBounds(170, 20, 470, 200);
-		SelectUI.getContentPane().add(txtpnasset);
+		JTextPane textPane = new JTextPane();
+		textPane.setFont(new Font("宋体", Font.PLAIN, 15));
+		textPane.setText("未来的英国社会处于极权统治的高压下，不能容许同性恋者、异教徒等社会角色的存在，人民在黑暗政权下苟延残喘。 ");
+		textPane.setBounds(170, 20, 470, 200);
+		SelectUI.getContentPane().add(textPane);
 		
 		JButton btnNewButton_1 = new JButton("OK");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
@@ -92,7 +94,7 @@ public class Select2 {
 				SelectUI.setVisible(false);
 			}
 		});
-		btnNewButton_1.setBounds(190,320, 70, 70);
+		btnNewButton_1.setBounds(190,320,70, 70);
 		SelectUI.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Back");

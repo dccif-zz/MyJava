@@ -14,10 +14,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Font;
+import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
+import javax.swing.JList;
+import javax.swing.JScrollBar;
+import java.awt.Font;
 
-public class Select2 {
+public class Select5 {
 
 	public static JFrame SelectUI;
 	Pay Pay3 = new Pay();        //实例化界面
@@ -40,8 +43,8 @@ public class Select2 {
 
 			public void run() {
 				try {
-					Select1 window = new Select1();
-					Select1.SelectUI.setVisible(true);
+					Select5 window = new Select5();
+					Select5.SelectUI.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,9 +54,8 @@ public class Select2 {
 
 	/**
 	 * Create the application.
-	 * @wbp.parser.entryPoint
 	 */
-	public Select2() {
+	public Select5() {
 		initialize();
 	}
 	
@@ -74,15 +76,15 @@ public class Select2 {
 		SelectUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		SelectUI.getContentPane().setLayout(null);
 		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\dccif\\Documents\\Work\\Source\\Pic\\2.jpg"));
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\dccif\\Documents\\Work\\Source\\Pic\\5.jpg"));
 		btnNewButton.setBounds(25, 50, 121, 170);
 		SelectUI.getContentPane().add(btnNewButton);
 		
-		JTextPane txtpnasset = new JTextPane();
-		txtpnasset.setFont(new Font("宋体", Font.PLAIN, 15));
-		txtpnasset.setText("在“后斯诺登时代”，伯恩重出江湖，对抗大反派Asset。故事最开始将在希腊展开，这里是民主政治的诞生地，同时这个国家现在面临严重的经济危机，足以对欧洲经济圈造成巨大威胁，最后故事将在拉斯维加斯结束。");
-		txtpnasset.setBounds(170, 20, 470, 200);
-		SelectUI.getContentPane().add(txtpnasset);
+		JTextPane txtpndj = new JTextPane();
+		txtpndj.setFont(new Font("宋体", Font.PLAIN, 15));
+		txtpndj.setText("本片根据印度畅销书作家奇坦·巴哈特（Chetan Bhagat）的处女作小说《五点人》（Five Point Someone）改编而成。法兰（马德哈万 R Madhavan 饰）、拉杜（沙曼·乔希 Sharman Joshi 饰）与兰乔（阿米尔·汗 Aamir Khan 饰）是皇家工程学院的学生，三人共居一室，结为好友。在以严格著称的学院里，兰乔是个非常与众不同的学生，他不死记硬背，甚至还公然顶撞校长“病毒”（波曼·伊拉尼 Boman Irani 饰），质疑他的教学方法。他不仅鼓动法兰与拉杜去勇敢追寻理想，还劝说校长的二女儿碧雅（卡琳娜·卡普 Kareena Kapoor 饰）离开满眼铜臭的未婚夫。兰乔的特立独行引起了模范学生“消音器”（奥米·维嘉 Omi Vaidya 饰）的不满，他约定十年后再与兰乔一决高下，看哪种生活方式更能取得成功。");
+		txtpndj.setBounds(170, 20, 470, 200);
+		SelectUI.getContentPane().add(txtpndj);
 		
 		JButton btnNewButton_1 = new JButton("OK");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
@@ -106,15 +108,17 @@ public class Select2 {
 		btnNewButton_2.setBounds(490, 341, 113, 27);
 		SelectUI.getContentPane().add(btnNewButton_2);
 		
+				
+		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setEditable(true);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
-		comboBox.setBounds(206, 252, 121, 31);
+		comboBox.setBounds(206, 252, 120, 30);
 		SelectUI.getContentPane().add(comboBox);
 		
 		textField = new JTextField();
 		textField.setText("3");
-		textField.setBounds(414, 252, 116, 31);
+		textField.setBounds(414, 252, 120, 30);
 		SelectUI.getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -140,5 +144,6 @@ public class Select2 {
 				textField.setText(total);
 			}		
 		});
+		
 	}
 }
