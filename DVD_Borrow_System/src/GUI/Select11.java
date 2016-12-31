@@ -22,7 +22,7 @@ import java.awt.ItemSelectable;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-public class Select1 {
+public class Select11 {
 
 	protected static final String Interger = null;
 	public static JFrame SelectUI;
@@ -59,7 +59,7 @@ public class Select1 {
 	 * Create the application.
 	 * @wbp.parser.entryPoint
 	 */
-	public Select1() {
+	public Select11() {
 		initialize();
 	}
 	
@@ -81,13 +81,13 @@ public class Select1 {
 		SelectUI.getContentPane().setLayout(null);
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setBackground(UIManager.getColor("Button.background"));
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\dccif\\Documents\\Work\\Source\\Pic\\1.jpg"));
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\dccif\\Documents\\Work\\Source\\Pic\\11.jpg"));
 		btnNewButton.setBounds(25, 50, 121, 170);
 		SelectUI.getContentPane().add(btnNewButton);
 		
 		JTextPane textPane = new JTextPane();
 		textPane.setFont(new Font("宋体", Font.PLAIN, 15));
-		textPane.setText("金三角湄公河上，一处被称为“鬼门关”的河段，两艘来自中国的商船遭到不明身份之人的枪击袭击。未过多久，泰国军方召开新闻发布会，指责中国商船贩卖毒品。虽然发布会宣称船员全部逃亡，但是十三具遭受残忍杀害的中国船员尸体很快被人发现。这起胆大妄为的案件令中国警方大为震惊，云南省缉毒总队队长高刚（张涵予 饰）受命带特别行动小组前往泰国，并与情报员方新武（彭于晏 饰）合作接洽。根据现有资料显示，这件案子由盘踞在金三角的大毒枭糯卡所为。糯卡贪婪残忍，胆大包天，是湄公河流域上一颗惊扰运输安全的毒瘤。为了将这个恶棍绳之于法，中国、老挝、缅甸开展了三国联合巡逻，集中对糯卡的制毒窝点进行扫荡。而高刚等人也深入最危险境地，与丧失人性的贩毒分子进行惨烈对决…… ");
+		textPane.setText("1912年4月10日，号称 “世界工业史上的奇迹”的豪华客轮泰坦尼克号开始了自己的处女航，从英国的南安普顿出发驶往美国纽约。富家少女罗丝（凯特•温丝莱特）与母亲及未婚夫卡尔坐上了头等舱；另一边，放荡不羁的少年画家杰克（莱昂纳多·迪卡普里奥）也在码头的一场赌博中赢得了下等舱的船票。 ");
 		textPane.setBounds(170, 20, 470, 200);
 		SelectUI.getContentPane().add(textPane);
 		

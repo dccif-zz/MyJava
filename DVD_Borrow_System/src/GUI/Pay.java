@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 
 public class Pay {
 
@@ -45,6 +46,7 @@ public class Pay {
 		PayUI.getContentPane().setLayout(null);
 		
 		JButton btnNewButton = new JButton("Qcord");
+		btnNewButton.setIcon(new ImageIcon("C:\\Users\\dccif\\Documents\\Work\\new.jpg"));
 		btnNewButton.setBounds(214, 47, 222, 208);
 		PayUI.getContentPane().add(btnNewButton);
 		
@@ -52,11 +54,11 @@ public class Pay {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Select1.SelectUI.setVisible(true);
+				Main1.frmDvd.setVisible(true);
 				PayUI.setVisible(false);
 			}
 		});
-		btnNewButton_1.setBounds(273, 326, 113, 27);
+		btnNewButton_1.setBounds(300, 300, 113, 27);
 		PayUI.getContentPane().add(btnNewButton_1);
 	}
 
