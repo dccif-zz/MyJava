@@ -11,7 +11,7 @@
     <title>简单的JSP页面</title>
 </head>
 <body>
-    <h1>Hello,World!</h1>
-    现在的时间是: <%= new java.util.Date() %>
+<h1>Hello,World!</h1>
+现在的时间是: <%= new java.util.Date() %>
 </body>
 </html>
