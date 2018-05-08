@@ -1,5 +1,9 @@
 .idea/
 .gradle/
+build/
+out/
+bin/
+gradle/
 gradlew
 gradlew.bat
 ffmpeg.exe
