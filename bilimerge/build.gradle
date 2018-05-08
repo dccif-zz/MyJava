@@ -8,6 +8,10 @@ jar {
     }
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
 group 'top.dccif'
 version '1.0-SNAPSHOT'
 

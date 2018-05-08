@@ -28,7 +28,7 @@ public class PathTool {
         File outDir = new File(outPath);
         if (!outDir.exists())
             outDir.mkdir();
-        System.out.println("输出文件夹为:" + outPath);
+        System.out.println("Out Dir is :" + outPath);
 
         // 开始遍历给定文件目录,采用非递归遍历
         File root = new File(filePath);
