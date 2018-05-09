@@ -3,6 +3,9 @@ package top.dccif.Merge;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /***
  * 根据路径获取路径下所有文件
@@ -15,6 +18,7 @@ public class PathTool {
     private static final String FILE_EXT = "flv";
     private static final String FILE_TEMP = "\\input.txt";
     private List<File> filelist = new LinkedList<>();
+    ExecutorService threadPool = Executors.newCachedThreadPool();
 
     /***
      * 根据 文件后缀获取目录下所有flv文件并生成ffmpeg合并所需的input.txt文件
@@ -57,7 +61,9 @@ public class PathTool {
                 }
                 // input.txt文件生成完毕
                 // 开始合并
-                new mergeThread(currDir.getAbsolutePath(), currFile, outPath).run();
+                threadPool.submit(new mergeThread(currDir.getAbsolutePath(),currFile,outPath));
+//                threadPool.
+//                new mergeThread(currDir.getAbsolutePath(), currFile, outPath).run();
 
             }
         } else {
