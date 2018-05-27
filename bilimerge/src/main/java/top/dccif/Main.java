@@ -3,7 +3,6 @@ package top.dccif;
 import top.dccif.Merge.PathTool;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -26,14 +25,10 @@ public class Main {
 //            String[] out2 = sc.nextLine().split("\\s+");
             args = sc.nextLine().split("\\s+");
         }
-        if (args.length == 1 && args[0].equals("-h")) {
-            printhelp();
-        }
 
         PathTool my = new PathTool();
 
-        List<File> files = new ArrayList<>();
-
+        List<File> files;
         files = my.getPathAndGen(args[0], args[1]);
 
         my.fileDelete(files);

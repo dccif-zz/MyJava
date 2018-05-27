@@ -1,11 +1,14 @@
 package top.dccif.Merge;
 
+
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.SynchronousQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /***
  * 根据路径获取路径下所有文件
@@ -17,8 +20,10 @@ public class PathTool {
      */
     private static final String FILE_EXT = "flv";
     private static final String FILE_TEMP = "\\input.txt";
+    ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
+            4, Integer.MAX_VALUE, 3L, TimeUnit.SECONDS,
+            new SynchronousQueue<>());
     private List<File> filelist = new LinkedList<>();
-    ExecutorService threadPool = Executors.newCachedThreadPool();
 
     /***
      * 根据 文件后缀获取目录下所有flv文件并生成ffmpeg合并所需的input.txt文件
@@ -28,6 +33,7 @@ public class PathTool {
     public List<File> getPathAndGen(String filePath, String outPath) {
 
         String currFile = "";
+        List<File> currFiles = new ArrayList<>();
         // 获取输入路径，如果不存在着创建
         File outDir = new File(outPath);
         if (!outDir.exists())
@@ -40,7 +46,7 @@ public class PathTool {
             LinkedList<File> list = new LinkedList<>();
             File[] files = root.listFiles();
 
-            for (File file2 : files) {
+            for (File file2 : files != null ? files : new File[0]) {
                 if (file2.isDirectory()) {
                     list.add(file2);
                 }
@@ -50,20 +56,27 @@ public class PathTool {
             while (!list.isEmpty()) {
                 currDir = list.removeFirst();
                 files = currDir.listFiles();
-                for (File file2 : files) {
+                for (File file2 : files != null ? files : new File[0]) {
                     if (file2.isDirectory()) {
                         list.add(file2);
                     }
                     if (file2.getName().endsWith(FILE_EXT)) {
                         filelist.add(file2);
-                        currFile = filetxtGen(file2);
+                        currFiles.add(file2);
+//                        currFile = filetxtGen(file2);
                     }
                 }
+                currFiles.sort(new fileIndexComp());
+                currFile = filetxtGen(currFiles);
+                currFiles.clear();
                 // input.txt文件生成完毕
                 // 开始合并
-                threadPool.submit(new mergeThread(currDir.getAbsolutePath(),currFile,outPath));
-//                threadPool.
-//                new mergeThread(currDir.getAbsolutePath(), currFile, outPath).run();
+//                mergeTasks.add(new mergeTask(currDir.getAbsolutePath(),currFile,outPath));
+//                threadPool.submit(new mergeTask(currDir.getAbsolutePath(),currFile,outPath));
+//                threadPool
+                new mergeThread(currDir.getAbsolutePath(), currFile, outPath).run();
+//                threadPoolExecutor.submit(new mergeThread(currDir.getAbsolutePath(),currFile,outPath));
+//                Executors.callable(new mergeTask(currDir.getAbsolutePath(), currFile, outPath));
 
             }
         } else {
@@ -71,6 +84,33 @@ public class PathTool {
         }
 
         return filelist;
+    }
+
+    /***
+     * 根据路径生成ffmpeg要求的input.txt文件
+     * @return outfile 当前文件的简略名
+     */
+    private String filetxtGen(List<File> filelist) {
+        File firstFile = filelist.get(0);
+        String[] outFilename = firstFile.getName().split("_");
+
+        try (FileWriter fw = new FileWriter(firstFile.getParent() + FILE_TEMP, true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+            for (File file : filelist) {
+                String filepathEsc = file.getAbsolutePath().replaceAll("\\\\", "\\\\\\\\");
+                if (File.separatorChar == '\\') {
+                    out.println("file " + filepathEsc);
+                } else {
+                    out.println("file " + filepathEsc);
+                }
+                fw.flush();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return outFilename[0] + "_" + outFilename[1] + ".mp4";
     }
 
     /***
@@ -134,6 +174,18 @@ public class PathTool {
                 in.delete();
         } catch (NoSuchFieldError e) {
             e.printStackTrace();
+        }
+    }
+
+    private class fileIndexComp implements Comparator<File> {
+
+        @Override
+        public int compare(File o1, File o2) {
+            String[] fileindex1 = o1.getName().split("_");
+            Integer in1 = Integer.parseInt(fileindex1[2].substring(0, fileindex1[2].lastIndexOf(FILE_EXT) - 1));
+            String[] fileindex2 = o2.getName().split("_");
+            Integer in2 = Integer.parseInt(fileindex2[2].substring(0, fileindex2[2].lastIndexOf(FILE_EXT) - 1));
+            return Integer.compare(in1, in2);
         }
     }
 

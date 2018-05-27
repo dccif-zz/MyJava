@@ -1,9 +1,8 @@
 package top.dccif.Merge;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
+import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,8 +14,8 @@ public class PathToolTest {
 //    filelist = getPathAndGen("E:\\BiliDown\\9876107", "E:\\BiliDown\\out");
 
     public List<File> init() {
-        File file = new File("E:\\BiliDown\\9876107");
-        filelist = getPathAndGen("E:\\BiliDown\\9876107", "E:\\BiliDown\\out");
+        File file = new File("E:\\BiliDown\\8515129");
+        filelist = getPathAndGen("E:\\BiliDown\\8515129", "E:\\BiliDown\\out");
         return filelist;
     }
 
@@ -50,6 +49,7 @@ public class PathToolTest {
                     }
                     if (file2.getName().endsWith("flv")) {
                         filelist.add(file2);
+                        //currFile = filetxtGen(file2);
                     }
                 }
 
@@ -72,6 +72,34 @@ public class PathToolTest {
             }
         }
         return 0;
+    }
+
+    private String filetxtGen(File file) {
+        // 采用缓冲，避免重复打开文件
+        try (FileWriter fw = new FileWriter(file.getParent() + "\\input.txt", true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)
+        ) {
+            // 文件路径的转义,使用正则表达式
+            String filepathEsc = file.getAbsolutePath().replaceAll("\\\\", "\\\\\\\\");
+            if (File.separatorChar == '\\') {
+                out.println("file " + filepathEsc);
+            } else {
+                out.println("file " + filepathEsc);
+            }
+            fw.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String[] out = file.getName().split("_");
+
+        return out[0] + "_" + out[1] + ".mp4";
+    }
+
+    @Test
+    public void genFile() {
+        init();
     }
 
 

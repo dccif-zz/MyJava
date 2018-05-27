@@ -3,13 +3,14 @@ package top.dccif.Merge;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+import java.util.concurrent.Callable;
 
-public class mergeThread implements Runnable {
+public class mergeTask implements Callable<Integer> {
     private String infile;
     private String outfile;
     private String outPath;
 
-    public mergeThread(String infile, String outfile, String outPath) {
+    public mergeTask(String infile, String outfile, String outPath) {
         this.infile = infile;
         this.outfile = outfile;
         this.outPath = outPath;
@@ -45,15 +46,15 @@ public class mergeThread implements Runnable {
                         System.out.println(out);
                     }
                     System.out.println("Start merge " + outfile);
-                    while (exitcode != 0) {
-                        exitcode = process.waitFor();
-                        process.wait(100);
-                        process.waitFor();
+                    exitcode = process.waitFor();
+                    while (exitcode != -1) {
+                        System.out.println("finished " + outfile);
+//                    process.wait(100);
+//                process.waitFor();
+                        process.destroy();
+                        return 0;
                     }
-                    process.destroy();
-                    System.out.println("finished " + outfile);
                 }
-                return 0;
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -62,7 +63,7 @@ public class mergeThread implements Runnable {
     }
 
     @Override
-    public void run() {
-        flvtomp4();
+    public Integer call() {
+        return flvtomp4();
     }
 }
