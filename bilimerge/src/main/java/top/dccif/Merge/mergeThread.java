@@ -47,8 +47,8 @@ public class mergeThread implements Runnable {
                     System.out.println("Start merge " + outfile);
                     while (exitcode != 0) {
                         exitcode = process.waitFor();
-                        process.wait(100);
-                        process.waitFor();
+//                        process.wait(100);
+//                        process.waitFor();
                     }
                     process.destroy();
                     System.out.println("finished " + outfile);
