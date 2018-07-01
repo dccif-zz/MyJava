@@ -14,8 +14,8 @@ public class PathToolTest {
 //    filelist = getPathAndGen("E:\\BiliDown\\9876107", "E:\\BiliDown\\out");
 
     public List<File> init() {
-        File file = new File("E:\\BiliDown\\8515129");
-        filelist = getPathAndGen("E:\\BiliDown\\8515129", "E:\\BiliDown\\out");
+        File file = new File("E:\\BiliDown\\22683925");
+        filelist = getPathAndGen("E:\\BiliDown\\22683925", "E:\\BiliDown\\out");
         return filelist;
     }
 

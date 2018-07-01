@@ -28,6 +28,7 @@ public class PathTool {
     /***
      * 根据 文件后缀获取目录下所有flv文件并生成ffmpeg合并所需的input.txt文件
      * @param filePath 目标路径，根据命令行读入
+     * @param outPath 输入路径，根据命令行读入
      * @return 符合条件的所有文件的ArrayList列表
      */
     public List<File> getPathAndGen(String filePath, String outPath) {
