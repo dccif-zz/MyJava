@@ -21,7 +21,7 @@ public class PathTool {
     private static final String FILE_EXT = "flv";
     private static final String FILE_TEMP = "\\input.txt";
     ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
-            4, Integer.MAX_VALUE, 3L, TimeUnit.SECONDS,
+            4, Integer.MAX_VALUE, 300L, TimeUnit.SECONDS,
             new SynchronousQueue<>());
     private List<File> filelist = new LinkedList<>();
 
@@ -81,7 +81,7 @@ public class PathTool {
 
             }
         } else {
-            System.out.println("No such file");
+            System.out.println("No such cmdparams");
         }
 
         return filelist;

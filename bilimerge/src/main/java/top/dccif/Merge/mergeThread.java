@@ -25,7 +25,7 @@ public class mergeThread implements Runnable {
 //            String outfile = outname[0] + "_" + outname[1] + ".mp4";
             String outfilepath = outPath + "\\" + outfile;
 
-            String[] incmd = {"ffmpeg.exe",
+            String[] incmd = {"cmd.exe", "/c", "ffmpeg.exe",
                     "-loglevel", "quiet",
                     "-f", "concat",
                     "-safe", "0",
@@ -41,9 +41,9 @@ public class mergeThread implements Runnable {
                 try (BufferedReader br = new BufferedReader(
                         new InputStreamReader(process.getInputStream()))) {
                     String out = null;
-                    while ((out = br.readLine()) != null) {
-                        System.out.println(out);
-                    }
+//                    while ((out = br.readLine()) != null) {
+//                        System.out.println(out);
+//                    }
                     System.out.println("Start merge " + outfile);
                     while (exitcode != 0) {
                         exitcode = process.waitFor();

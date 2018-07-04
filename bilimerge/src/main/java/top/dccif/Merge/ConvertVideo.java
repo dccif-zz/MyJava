@@ -1,9 +1,9 @@
 package top.dccif.Merge;
 
 import org.springframework.stereotype.Service;
-import top.dccif.file.Filepath;
+import top.dccif.cmdparams.Cmdparam;
 
 @Service
 public interface ConvertVideo {
-    void convert(Filepath filepath, String outName);
+    void convert(Cmdparam cmdparam, String outName);
 }

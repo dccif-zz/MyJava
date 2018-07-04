@@ -1,16 +1,20 @@
 package top.dccif;
 
-import top.dccif.Merge.PathTool;
+import top.dccif.cmdparams.Cmdparam;
+import top.dccif.convert.Convert;
+import top.dccif.utilTools.PathTool;
 
 import java.io.File;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Main {
 
     public static void printhelp() {
-        System.out.println("必须两个参数，第一个为目录，结尾不要有\\，第二个参数为输出目录，同样结尾不要有\\");
-        System.out.println("Such merge C:\\Down\\182323  C:\\Out\\YouDir");
+        System.out.println("必须两个参数，第一个为目录，第二个参数为输出目录");
+        System.out.println("Such merge C:\\Down\\182323[\\]  C:\\Out\\YouDir[\\]");
     }
 
 
@@ -26,11 +30,25 @@ public class Main {
             args = sc.nextLine().split("\\s+");
         }
 
-        PathTool my = new PathTool();
+        Cmdparam inputPath = new Cmdparam(args[0], args[1]);
 
-        List<File> files;
-        files = my.getPathAndGen(args[0], args[1]);
+        PathTool tools = new PathTool(inputPath);
 
-        my.fileDelete(files);
+        List<File> files = tools.getPathAndGen();
+        List<Convert> cv = tools.getConvertTaskList();
+
+        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(cv.size());
+        for (Convert c : cv) {
+            fixedThreadPool.submit(c);
+        }
+
+//        cv.stream().map(((Function<Convert, Object>) fixedThreadPool::submit));
+//        top.dccif.Merge.PathTool my = new top.dccif.Merge.PathTool();
+//        files = my.getPathAndGen(args[0], args[1]);
+//        my.fileDelete(files);
+
+        // 收尾处理
+        fixedThreadPool.shutdown();
+        sc.close();
     }
 }

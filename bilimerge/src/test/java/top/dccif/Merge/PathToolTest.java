@@ -10,7 +10,7 @@ public class PathToolTest {
 
     private List<File> filelist = new LinkedList<>();
 
-//    File file = new File("E:\\BiliDown\\9876107");
+//    File cmdparams = new File("E:\\BiliDown\\9876107");
 //    filelist = getPathAndGen("E:\\BiliDown\\9876107", "E:\\BiliDown\\out");
 
     public List<File> init() {
@@ -55,7 +55,7 @@ public class PathToolTest {
 
             }
         } else {
-            System.out.println("No such file");
+            System.out.println("No such cmdparams");
         }
 
         return filelist;
