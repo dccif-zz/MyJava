@@ -68,7 +68,7 @@ public class PathTool {
         File outDir = new File(cmdparam.getOutFilePath());
         if (!outDir.exists())
             outDir.mkdir();
-        System.out.println("Out Dir is :" + outDir.getAbsolutePath());
+        System.out.println("Out Dir is: " + outDir.getAbsolutePath());
 
         // 开始遍历给定文件目录,采用非递归遍历
         File root = new File(cmdparam.getInFilePath());
@@ -158,10 +158,13 @@ public class PathTool {
      * @return this 为了链式调用
      */
     public PathTool startMerge() {
+        // (暂定)使用线程池多线程
         ExecutorService fixedThreadPool = Executors.newFixedThreadPool(convertTaskList.size());
         for (Convert convert : convertTaskList) {
             fixedThreadPool.submit(convert);
         }
+
+        // 等待任务全部完成
         fixedThreadPool.shutdown();
         return this;
     }
@@ -176,6 +179,7 @@ public class PathTool {
         String[] outFilename = firstFile.getName().split("_");
         String filename = "";
 
+        // 生成input.txt 文件
         try (FileWriter fw = new FileWriter(firstFile.getParent() + FILE_TEMP);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter out = new PrintWriter(bw)) {
@@ -192,6 +196,7 @@ public class PathTool {
             e.printStackTrace();
         }
 
+        // 读入当前路径下的info文件
         StringBuilder lines = new StringBuilder();
         try (Stream<String> stringStream = Files.lines(Paths.get(firstFile.getParent() + "\\" + outFilename[0] + FILE_INFO))) {
             stringStream.forEach(lines::append);
@@ -199,9 +204,12 @@ public class PathTool {
             e.printStackTrace();
         }
 
+        // 解析JSON获取分p名
         JSONObject obj = new JSONObject(lines.toString());
-        Pattern begDig = Pattern.compile("^\\d{1,3}");
         filename = obj.getString("PartName") + FORMAT_OUT;
+
+        // 根据是否为数字开始，添加序号
+        Pattern begDig = Pattern.compile("^\\d{1,3}");
         if (!begDig.matcher(filename).lookingAt()) {
             filename = obj.getString("PartNo") + "_" + obj.getString("PartName") + FORMAT_OUT;
         }
