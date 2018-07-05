@@ -1,10 +1,8 @@
 package top.dccif.Merge;
 
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.stereotype.Service;
 import top.dccif.cmdparams.Cmdparam;
 
-@Service
+//@Service
 public class ConvertTomp4 implements ConvertVideo {
     private Cmdparam cmdparam;
     private String outName;
@@ -17,7 +15,7 @@ public class ConvertTomp4 implements ConvertVideo {
         this.outName = outName;
     }
 
-    @Async
+    //    @Async
     @Override
     public void convert(Cmdparam cmdparam, String outName) {
 

@@ -4,11 +4,8 @@ import top.dccif.cmdparams.Cmdparam;
 import top.dccif.convert.Convert;
 import top.dccif.utilTools.PathTool;
 
-import java.io.File;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class Main {
 
@@ -34,13 +31,14 @@ public class Main {
 
         PathTool tools = new PathTool(inputPath);
 
-        List<File> files = tools.getPathAndGen();
         List<Convert> cv = tools.getConvertTaskList();
+        tools.getPathAndGen().startMerge();
 
-        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(cv.size());
-        for (Convert c : cv) {
-            fixedThreadPool.submit(c);
-        }
+//        List<File> files = tools.getPathAndGen();
+//        ExecutorService fixedThreadPool = Executors.newFixedThreadPool(cv.size());
+//        for (Convert c : cv) {
+//            fixedThreadPool.submit(c);
+//        }
 
 //        cv.stream().map(((Function<Convert, Object>) fixedThreadPool::submit));
 //        top.dccif.Merge.PathTool my = new top.dccif.Merge.PathTool();
@@ -48,7 +46,7 @@ public class Main {
 //        my.fileDelete(files);
 
         // 收尾处理
-        fixedThreadPool.shutdown();
+//        fixedThreadPool.shutdown();
         sc.close();
     }
 }
