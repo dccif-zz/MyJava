@@ -34,6 +34,7 @@ public class PathTool {
      * <p>生成临时的ffmpeg转换所需要的input.txt文件</p>
      */
     private static final String FILE_EXT = "flv";
+    private static final String FORMAT_OUT = ".mp4";
     private static final String FILE_TEMP = "\\input.txt";
     private static final String FILE_INFO = ".info";
     // 文件列表
@@ -200,9 +201,9 @@ public class PathTool {
 
         JSONObject obj = new JSONObject(lines.toString());
         Pattern begDig = Pattern.compile("^\\d{1,3}");
-        filename = obj.getString("PartName");
+        filename = obj.getString("PartName") + FORMAT_OUT;
         if (!begDig.matcher(filename).lookingAt()) {
-            filename = obj.getString("PartNo") + "_" + obj.getString("PartName") + ".mp4";
+            filename = obj.getString("PartNo") + "_" + obj.getString("PartName") + FORMAT_OUT;
         }
 
         return filename;
