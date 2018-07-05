@@ -13,7 +13,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -202,8 +201,7 @@ public class PathTool {
         JSONObject obj = new JSONObject(lines.toString());
         Pattern begDig = Pattern.compile("^\\d{1,3}");
         filename = obj.getString("PartName");
-        Matcher matcher = begDig.matcher(filename);
-        if (!matcher.lookingAt()) {
+        if (!begDig.matcher(filename).lookingAt()) {
             filename = obj.getString("PartNo") + "_" + obj.getString("PartName") + ".mp4";
         }
 
